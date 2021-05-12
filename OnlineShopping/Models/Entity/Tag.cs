@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace OnlineShopping.Models.Entity
 {
-    [Table("Dil")]
-    public class Dil
+    [Table("Tag")]
+    public class Tag
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
