@@ -11,6 +11,7 @@ namespace OnlineShopping.Models
     {
         public ModelContext(DbContextOptions<ModelContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         public DbSet<Firma> Firmalar { get; set; } //CRUD operations
@@ -20,5 +21,7 @@ namespace OnlineShopping.Models
         public DbSet<Dil> Diller { get; set; }
 
         public DbSet<Tag> Tagler { get; set; }
+
+        public DbSet<Oyun> Oyunlar { get; set; }
     }
 }

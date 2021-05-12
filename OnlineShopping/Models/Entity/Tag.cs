@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShopping.Models.Entity
 {
+    [Table("Tag")]
     public class Tag
     {
         [Key]
