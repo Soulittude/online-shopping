@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShopping.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,9 @@ namespace OnlineShopping.Models
         }
 
         public DbSet<Firma> Firmalar { get; set; } //CRUD operations
+
+        public DbSet<Platform> Platformlar { get; set; }
+
+        public DbSet<Dil> Diller { get; set; }
     }
 }
