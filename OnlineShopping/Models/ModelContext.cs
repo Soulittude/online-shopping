@@ -18,5 +18,7 @@ namespace OnlineShopping.Models
         public DbSet<Platform> Platformlar { get; set; }
 
         public DbSet<Dil> Diller { get; set; }
+
+        public DbSet<Tag> Tagler { get; set; }
     }
 }
