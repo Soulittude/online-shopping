@@ -29,11 +29,13 @@ namespace OnlineShopping.Models.Entity
         [ForeignKey("FirmaFK")]
         [Column("firma_id")]
         public int FirmaID { get; set; }
+        public virtual Firma FirmaFK { get; set; }
 
 
         [ForeignKey("PlatformFK")]
         [Column("platform_id")]
         public int PlatformID { get; set; }
+        public virtual Platform PlatformFK { get; set; }
 
     }
 }
