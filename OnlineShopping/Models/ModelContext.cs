@@ -26,6 +26,7 @@ namespace OnlineShopping.Models
         public DbSet<Oyun> Oyunlar { get; set; }
 
         public DbSet<OyunTag> OyunTagleri { get; set; }
+        public DbSet<OyunDil> OyunDilleri { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,10 +52,10 @@ namespace OnlineShopping.Models
 
             modelBuilder.Entity<Tag>()
                         .HasData(
-                         new Oyun { Id = 1, Ad = "Co-Op" },
-                         new Oyun { Id = 2, Ad = "Single" },
-                         new Oyun { Id = 3, Ad = "Multi" },
-                         new Oyun { Id = 4, Ad = "Çöp" });
+                         new Tag { Id = 1, Ad = "Co-Op" },
+                         new Tag { Id = 2, Ad = "Single" },
+                         new Tag { Id = 3, Ad = "Multi" },
+                         new Tag { Id = 4, Ad = "Çöp" });
 
             modelBuilder.Entity<OyunTag>()
                         .HasData(
@@ -64,6 +65,20 @@ namespace OnlineShopping.Models
                          new OyunTag { Id = 4, OyunID = 4, TagID = 1 },
                          new OyunTag { Id = 5, OyunID = 3, TagID = 4 });
 
+            modelBuilder.Entity<Dil>()
+                        .HasData(
+                         new Dil { Id = 1, Ad = "Kürtçe" },
+                         new Dil { Id = 2, Ad = "Zazaca" },
+                         new Dil { Id = 3, Ad = "İbranice" },
+                         new Dil { Id = 4, Ad = "Lazca" });
+
+            modelBuilder.Entity<OyunDil>()
+                        .HasData(
+                         new OyunDil { Id = 1, OyunID = 1, DilID = 2 },
+                         new OyunDil { Id = 2, OyunID = 2, DilID = 3 },
+                         new OyunDil { Id = 3, OyunID = 1, DilID = 3 },
+                         new OyunDil { Id = 4, OyunID = 4, DilID = 1 },
+                         new OyunDil { Id = 5, OyunID = 3, DilID = 4 });
         }
     }
 }
