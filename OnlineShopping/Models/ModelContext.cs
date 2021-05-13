@@ -11,7 +11,7 @@ namespace OnlineShopping.Models
     {
         public ModelContext(DbContextOptions<ModelContext> options) : base(options)
         {
-            
+
         }
 
 
@@ -41,6 +41,28 @@ namespace OnlineShopping.Models
                         new Firma { Id = 2, Ad = "Erzurum Game Studios", Ulke = "Türkiye", Website = "www.erzu.rum" },
                         new Firma { Id = 3, Ad = "Rockstar", Ulke = "Erzincan", Website = "www.rock.star" });
 
+            modelBuilder.Entity<Oyun>()
+                        .HasData(
+                         new Oyun { Id = 1, Ad = "MM", CikisTarihi = DateTime.Now, Fiyat = 1, FirmaID = 1, PlatformID = 1 },
+                         new Oyun { Id = 2, Ad = "a", CikisTarihi = DateTime.Now, Fiyat = 100, FirmaID = 2, PlatformID = 1 },
+                         new Oyun { Id = 3, Ad = "x", CikisTarihi = DateTime.Now, Fiyat = 55, FirmaID = 3, PlatformID = 2 },
+                         new Oyun { Id = 4, Ad = "d", CikisTarihi = DateTime.Now, Fiyat = 85, FirmaID = 1, PlatformID = 1 },
+                         new Oyun { Id = 5, Ad = "ww", CikisTarihi = DateTime.Now, Fiyat = 200, FirmaID = 1, PlatformID = 3 });
+
+            modelBuilder.Entity<Tag>()
+                        .HasData(
+                         new Oyun { Id = 1, Ad = "Co-Op" },
+                         new Oyun { Id = 2, Ad = "Single" },
+                         new Oyun { Id = 3, Ad = "Multi" },
+                         new Oyun { Id = 4, Ad = "Çöp" });
+
+            modelBuilder.Entity<OyunTag>()
+                        .HasData(
+                         new OyunTag { Id = 1, OyunID = 1, TagID = 2 },
+                         new OyunTag { Id = 2, OyunID = 2, TagID = 3 },
+                         new OyunTag { Id = 3, OyunID = 1, TagID = 3 },
+                         new OyunTag { Id = 4, OyunID = 4, TagID = 1 },
+                         new OyunTag { Id = 5, OyunID = 3, TagID = 4 });
 
         }
     }
