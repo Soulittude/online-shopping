@@ -35,7 +35,7 @@ namespace OnlineShopping.Controllers
             var firma = _context.Firmalar.FirstOrDefault(p => p.Id == id);
             if(firma is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Böyle bir veri yok.");
             }
             return firma;
         }
