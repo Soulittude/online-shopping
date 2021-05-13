@@ -76,5 +76,13 @@ namespace OnlineShopping.Controllers
             _context.SaveChanges();
             return Ok("BAŞARILI");
         }
+
+        [HttpGet("oyun/{id}")]
+        public IEnumerable<OyunTag> GetByOyunId(int id)
+        {
+            var oyuntag = _context.OyunTagleri.Where(p => p.OyunID == id).ToArray();
+          
+            return oyuntag;
+        }
     }
 }
