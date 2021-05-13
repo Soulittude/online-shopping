@@ -25,6 +25,8 @@ namespace OnlineShopping.Models
 
         public DbSet<Oyun> Oyunlar { get; set; }
 
+        public DbSet<OyunTag> OyunTagleri { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Platform>()
