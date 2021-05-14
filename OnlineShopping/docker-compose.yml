@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7.18
+    container_name: onlineshopping-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "p4ssw0r#"
+      MYSQL_DATABASE: "onlineshopping"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    restart: always
+    networks:
+      - onlineshopping-net
+  onlineshopping:
+    image: onlineshopping
+    ports:
+      - "5000:80"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    networks:
+      - onlineshopping-net
+volumes:
+  mysql-data:
+networks:
+  onlineshopping-net:
+    driver: bridge

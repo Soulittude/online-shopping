@@ -11,7 +11,6 @@ namespace OnlineShopping.Models
     {
         public ModelContext(DbContextOptions<ModelContext> options) : base(options)
         {
-
         }
 
 

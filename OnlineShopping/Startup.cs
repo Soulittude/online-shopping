@@ -29,7 +29,6 @@ namespace OnlineShopping
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<ModelContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
-
             services.AddControllers();
         }
 
@@ -51,6 +50,9 @@ namespace OnlineShopping
             {
                 endpoints.MapControllers();
             });
+
+            var dbContext = app.ApplicationServices.GetService(typeof(ModelContext)) as ModelContext;
+            dbContext.Database.Migrate();
         }
     }
 }
