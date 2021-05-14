@@ -16,13 +16,15 @@ namespace OnlineShopping.Models
         public int Id { get; set; }
 
         [Column("ad")]
+        [MaxLength(50)]
         public string Ad { get; set; }
 
         [Column("ulke")]
-        [Required]
+        [MaxLength(30)]
         public string Ulke { get; set; }
 
         [Column("website")]
+        [MaxLength(50)]
         public string Website { get; set; }
     }
 }

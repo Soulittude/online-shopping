@@ -16,6 +16,7 @@ namespace OnlineShopping.Models.Entity
         public int Id { get; set; }
 
         [Column("ad")]
+        [MaxLength(30)]
         public string Ad { get; set; }
     }
 }
