@@ -22,21 +22,19 @@ namespace OnlineShopping.Controllers
             _context = context;
         }
 
-        //get wwww.site.com/OyunDil
         [HttpGet]
         public IEnumerable<OyunDil> Get()
         {
             return _context.OyunDilleri.ToArray();
         }
 
-        //get wwww.site.com/OyunDil/5
         [HttpGet("{id}")]
         public ActionResult<OyunDil> GetById(int id)
         {
             var oyundil = _context.OyunDilleri.FirstOrDefault(p => p.Id == id);
             if (oyundil is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Veri bulunamadı");
             }
             return oyundil;
         }
@@ -47,25 +45,18 @@ namespace OnlineShopping.Controllers
             var oyundil = new OyunDil { OyunID = oyundilDTO.OyunID, DilID = oyundilDTO.DilID };
             _context.OyunDilleri.Add(oyundil);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, OyunDilDTO oyundilDTO)
         {
-            var oyundil = _context.OyunDilleri.FirstOrDefault(p => p.Id == id); //degisecek obje
-            /* if (OyunDil is null)
-             {
-                 OyunDil = new OyunDil { AdSoyad = OyunDilDTO.AdSoyad, Id = id };
-                 _context.OyunDilleri.Add(OyunDil);
-                 _context.SaveChanges();
-                 return CreatedAtAction("Get", new { id = id }, OyunDil);
-             }*/
+            var oyundil = _context.OyunDilleri.FirstOrDefault(p => p.Id == id);
             oyundil.OyunID = oyundilDTO.OyunID;
             oyundil.DilID = oyundilDTO.DilID;
 
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -74,14 +65,13 @@ namespace OnlineShopping.Controllers
             var oyundil = _context.OyunDilleri.FirstOrDefault(p => p.Id == id);
             _context.Remove(oyundil);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
 
         [HttpGet("oyun/{id}")]
         public IEnumerable<OyunDil> GetByOyunId(int id)
         {
             var oyundil = _context.OyunDilleri.Where(p => p.OyunID == id).ToArray();
-
             return oyundil;
         }
     }

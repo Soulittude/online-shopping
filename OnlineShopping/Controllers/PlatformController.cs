@@ -22,21 +22,19 @@ namespace OnlineShopping.Controllers
             _context = context;
         }
 
-        //get wwww.site.com/platform
         [HttpGet]
         public IEnumerable<Platform> Get()
         {
             return _context.Platformlar.ToArray();
         }
 
-        //get wwww.site.com/platform/5
         [HttpGet("{id}")]
         public ActionResult<Platform> GetById(int id)
         {
             var platform = _context.Platformlar.FirstOrDefault(p => p.Id == id);
             if(platform is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Veri bulunamadı");
             }
             return platform;
         }
@@ -47,23 +45,16 @@ namespace OnlineShopping.Controllers
             var platform = new Platform { Ad = platformDTO.Ad };
             _context.Platformlar.Add(platform);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, PlatformDTO platformDTO)
         {
-            var platform = _context.Platformlar.FirstOrDefault(p => p.Id == id); //degisecek obje
-           /* if (platform is null)
-            {
-                platform = new Platform { AdSoyad = platformDTO.AdSoyad, Id = id };
-                _context.Platformlar.Add(platform);
-                _context.SaveChanges();
-                return CreatedAtAction("Get", new { id = id }, platform);
-            }*/
+            var platform = _context.Platformlar.FirstOrDefault(p => p.Id == id);
             platform.Ad = platformDTO.Ad;
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -72,7 +63,7 @@ namespace OnlineShopping.Controllers
             var platform = _context.Platformlar.FirstOrDefault(p => p.Id == id);
             _context.Remove(platform);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
     }
 }

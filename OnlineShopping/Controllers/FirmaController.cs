@@ -21,21 +21,19 @@ namespace OnlineShopping.Controllers
             _context = context;
         }
 
-        //get wwww.site.com/firma
         [HttpGet]
         public IEnumerable<Firma> Get()
         {
             return _context.Firmalar.ToArray();
         }
 
-        //get wwww.site.com/firma/5
         [HttpGet("{id}")]
         public ActionResult<Firma> GetById(int id)
         {
             var firma = _context.Firmalar.FirstOrDefault(p => p.Id == id);
             if(firma is null)
             {
-                return Ok("Böyle bir veri yok.");
+                return Ok("Veri bulunamadı");
             }
             return firma;
         }
@@ -46,25 +44,18 @@ namespace OnlineShopping.Controllers
             var firma = new Firma { Ad = firmaDTO.Ad, Ulke = firmaDTO.Ulke, Website = firmaDTO.Website };
             _context.Firmalar.Add(firma);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, FirmaDTO firmaDTO)
         {
-            var firma = _context.Firmalar.FirstOrDefault(p => p.Id == id); //degisecek obje
-           /* if (firma is null)
-            {
-                firma = new Firma { AdSoyad = firmaDTO.AdSoyad, Id = id };
-                _context.Firmalar.Add(firma);
-                _context.SaveChanges();
-                return CreatedAtAction("Get", new { id = id }, firma);
-            }*/
+            var firma = _context.Firmalar.FirstOrDefault(p => p.Id == id);
             firma.Ad = firmaDTO.Ad;
             firma.Ulke = firmaDTO.Ulke;
             firma.Website = firmaDTO.Website;
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -73,7 +64,7 @@ namespace OnlineShopping.Controllers
             var firma = _context.Firmalar.FirstOrDefault(p => p.Id == id);
             _context.Remove(firma);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
     }
 }

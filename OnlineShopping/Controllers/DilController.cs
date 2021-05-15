@@ -22,21 +22,19 @@ namespace OnlineShopping.Controllers
             _context = context;
         }
 
-        //get wwww.site.com/dil
         [HttpGet]
         public IEnumerable<Dil> Get()
         {
             return _context.Diller.ToArray();
         }
 
-        //get wwww.site.com/dil/5
         [HttpGet("{id}")]
         public ActionResult<Dil> GetById(int id)
         {
             var dil = _context.Diller.FirstOrDefault(p => p.Id == id);
             if(dil is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Veri bulunamadı");
             }
             return dil;
         }
@@ -47,23 +45,16 @@ namespace OnlineShopping.Controllers
             var dil = new Dil { Ad = dilDTO.Ad };
             _context.Diller.Add(dil);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, DilDTO dilDTO)
         {
-            var dil = _context.Diller.FirstOrDefault(p => p.Id == id); //degisecek obje
-           /* if (dil is null)
-            {
-                dil = new Dil { AdSoyad = dilDTO.AdSoyad, Id = id };
-                _context.Diller.Add(dil);
-                _context.SaveChanges();
-                return CreatedAtAction("Get", new { id = id }, dil);
-            }*/
+            var dil = _context.Diller.FirstOrDefault(p => p.Id == id);
             dil.Ad = dilDTO.Ad;
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -72,7 +63,7 @@ namespace OnlineShopping.Controllers
             var dil = _context.Diller.FirstOrDefault(p => p.Id == id);
             _context.Remove(dil);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
     }
 }

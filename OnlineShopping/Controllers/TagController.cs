@@ -26,14 +26,13 @@ namespace OnlineShopping.Controllers
             return _context.Tagler.ToArray();
         }
 
-        //get wwww.site.com/tag/5
         [HttpGet("{id}")]
         public ActionResult<Tag> GetById(int id)
         {
             var tag = _context.Tagler.FirstOrDefault(p => p.Id == id);
             if (tag is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Veri bulunamadı");
             }
             return tag;
         }
@@ -44,7 +43,7 @@ namespace OnlineShopping.Controllers
             var tag = new Tag { Ad = tagDTO.Ad };
             _context.Tagler.Add(tag);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
@@ -54,7 +53,7 @@ namespace OnlineShopping.Controllers
 
             tag.Ad = tagDTO.Ad;
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -63,7 +62,7 @@ namespace OnlineShopping.Controllers
             var tag = _context.Tagler.FirstOrDefault(p => p.Id == id);
             _context.Remove(tag);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
     }
 }

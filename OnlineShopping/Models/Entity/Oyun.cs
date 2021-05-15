@@ -37,6 +37,5 @@ namespace OnlineShopping.Models.Entity
         [Column("platform_id")]
         public int PlatformID { get; set; }
         public virtual Platform PlatformFK { get; set; }
-
     }
 }

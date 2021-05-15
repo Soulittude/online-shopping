@@ -14,7 +14,7 @@ namespace OnlineShopping.Models
         }
 
 
-        public DbSet<Firma> Firmalar { get; set; } //CRUD operations
+        public DbSet<Firma> Firmalar { get; set; }
 
         public DbSet<Platform> Platformlar { get; set; }
 
@@ -25,6 +25,7 @@ namespace OnlineShopping.Models
         public DbSet<Oyun> Oyunlar { get; set; }
 
         public DbSet<OyunTag> OyunTagleri { get; set; }
+
         public DbSet<OyunDil> OyunDilleri { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,18 +44,18 @@ namespace OnlineShopping.Models
 
             modelBuilder.Entity<Oyun>()
                         .HasData(
-                         new Oyun { Id = 1, Ad = "MM", CikisTarihi = DateTime.Now, Fiyat = 1, FirmaID = 1, PlatformID = 1 },
-                         new Oyun { Id = 2, Ad = "a", CikisTarihi = DateTime.Now, Fiyat = 100, FirmaID = 2, PlatformID = 1 },
-                         new Oyun { Id = 3, Ad = "x", CikisTarihi = DateTime.Now, Fiyat = 55, FirmaID = 3, PlatformID = 2 },
-                         new Oyun { Id = 4, Ad = "d", CikisTarihi = DateTime.Now, Fiyat = 85, FirmaID = 1, PlatformID = 1 },
-                         new Oyun { Id = 5, Ad = "ww", CikisTarihi = DateTime.Now, Fiyat = 200, FirmaID = 1, PlatformID = 3 });
+                         new Oyun { Id = 1, Ad = "Fifa 2021", CikisTarihi = DateTime.Now, Fiyat = 1, FirmaID = 1, PlatformID = 1 },
+                         new Oyun { Id = 2, Ad = "Last Of Us", CikisTarihi = DateTime.Now, Fiyat = 100, FirmaID = 2, PlatformID = 1 },
+                         new Oyun { Id = 3, Ad = "Cyberpunk 2088", CikisTarihi = DateTime.Now, Fiyat = 55, FirmaID = 3, PlatformID = 2 },
+                         new Oyun { Id = 4, Ad = "Euro Drug Simulator", CikisTarihi = DateTime.Now, Fiyat = 85, FirmaID = 1, PlatformID = 1 },
+                         new Oyun { Id = 5, Ad = "Football Manager 2023", CikisTarihi = DateTime.Now, Fiyat = 200, FirmaID = 1, PlatformID = 3 });
 
             modelBuilder.Entity<Tag>()
                         .HasData(
                          new Tag { Id = 1, Ad = "Co-Op" },
                          new Tag { Id = 2, Ad = "Single" },
                          new Tag { Id = 3, Ad = "Multi" },
-                         new Tag { Id = 4, Ad = "Çöp" });
+                         new Tag { Id = 4, Ad = "Grind" });
 
             modelBuilder.Entity<OyunTag>()
                         .HasData(
@@ -66,9 +67,9 @@ namespace OnlineShopping.Models
 
             modelBuilder.Entity<Dil>()
                         .HasData(
-                         new Dil { Id = 1, Ad = "Kürtçe" },
-                         new Dil { Id = 2, Ad = "Zazaca" },
-                         new Dil { Id = 3, Ad = "İbranice" },
+                         new Dil { Id = 1, Ad = "Türkçe" },
+                         new Dil { Id = 2, Ad = "French" },
+                         new Dil { Id = 3, Ad = "Japonca" },
                          new Dil { Id = 4, Ad = "Lazca" });
 
             modelBuilder.Entity<OyunDil>()

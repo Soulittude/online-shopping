@@ -22,21 +22,19 @@ namespace OnlineShopping.Controllers
             _context = context;
         }
 
-        //get wwww.site.com/oyun
         [HttpGet]
         public IEnumerable<Oyun> Get()
         {
             return _context.Oyunlar.ToArray();
         }
 
-        //get wwww.site.com/oyun/5
         [HttpGet("{id}")]
         public ActionResult<Oyun> GetById(int id)
         {
             var oyun = _context.Oyunlar.FirstOrDefault(p => p.Id == id);
             if (oyun is null)
             {
-                return Ok("Böyle bir veri yok");
+                return Ok("Veri bulunamadı");
             }
             return oyun;
         }
@@ -47,20 +45,13 @@ namespace OnlineShopping.Controllers
             var oyun = new Oyun { Ad = oyunDTO.Ad, CikisTarihi = oyunDTO.CikisTarihi, Fiyat = oyunDTO.Fiyat, FirmaID = oyunDTO.FirmaID, PlatformID = oyunDTO.PlatformID };
             _context.Oyunlar.Add(oyun);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri ekleme işlemi başarılı");
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, OyunDTO oyunDTO)
         {
-            var oyun = _context.Oyunlar.FirstOrDefault(p => p.Id == id); //degisecek obje
-            /* if (oyun is null)
-             {
-                 oyun = new Oyun { AdSoyad = oyunDTO.AdSoyad, Id = id };
-                 _context.Oyunlar.Add(oyun);
-                 _context.SaveChanges();
-                 return CreatedAtAction("Get", new { id = id }, oyun);
-             }*/
+            var oyun = _context.Oyunlar.FirstOrDefault(p => p.Id == id);
             oyun.Ad = oyunDTO.Ad;
             oyun.CikisTarihi = oyunDTO.CikisTarihi;
             oyun.Fiyat = oyunDTO.Fiyat;
@@ -68,7 +59,7 @@ namespace OnlineShopping.Controllers
             oyun.PlatformID = oyunDTO.PlatformID;
 
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri güncelleme işlemi başarılı");
         }
 
         [HttpDelete("{id}")]
@@ -77,7 +68,7 @@ namespace OnlineShopping.Controllers
             var oyun = _context.Oyunlar.FirstOrDefault(p => p.Id == id);
             _context.Remove(oyun);
             _context.SaveChanges();
-            return Ok("BAŞARILI");
+            return Ok("Veri silme işlemi başarılı");
         }
     }
 }
