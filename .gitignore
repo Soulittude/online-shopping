@@ -234,6 +234,5 @@ _Pvt_Extensions
 .fake/
 
 
-OnlineShopping/Migrations/
 OnlineShopping/mysql-data/
 OnlineShopping/.vscode/
