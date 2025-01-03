@@ -10,7 +10,7 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "IISExpress", //test
       "launchBrowser": false,
       "launchUrl": "",
       "environmentVariables": {
